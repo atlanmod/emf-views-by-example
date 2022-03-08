@@ -3,4 +3,6 @@
   <semanticResources>metamodels/Book.ecore</semanticResources>
   <semanticResources>metamodels/Pizza.ecore</semanticResources>
   <semanticResources>metamodels/Publication.ecore</semanticResources>
+  <semanticResources>models/margherita.xmi</semanticResources>
+  <semanticResources>models/Recipes.xmi</semanticResources>
 </viewpoint:DAnalysis>

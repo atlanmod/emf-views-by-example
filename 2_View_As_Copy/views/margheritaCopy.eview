@@ -1,0 +1,4 @@
+viewpoint=../src-gen/copyPizza.eviewpoint
+contributingModels=margherita::../../Resources/models/margherita.xmi,\
+					book::../../Resources/models/Recipes.xmi
+matchingModel=../src-gen/copyPizza.ecl
