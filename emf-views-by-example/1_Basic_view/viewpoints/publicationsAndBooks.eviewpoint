@@ -1,3 +1,0 @@
-contributingMetamodels=publication::../../metamodels/Publication.ecore,\
-                       book::../../metamodels/Book.ecore
-weavingModel=publicationsAndBooks.xmi

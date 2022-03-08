@@ -1,0 +1,4 @@
+contributingModels=publication::../../Resources/models/Publication.xmi,\
+                   book::../../Resources/models/Book.xmi
+viewpoint=../viewpoints/publicationsAndBooks.eviewpoint
+matchingModel=firstChapter.ecl
