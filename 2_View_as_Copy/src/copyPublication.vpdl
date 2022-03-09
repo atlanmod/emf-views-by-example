@@ -1,0 +1,5 @@
+create view copyPublication as
+
+select publication.Publication.*
+
+from 'http://publication' as publication
