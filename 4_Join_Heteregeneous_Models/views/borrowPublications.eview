@@ -1,0 +1,4 @@
+viewpoint=../src-gen/borrowBooksAndPublications.eviewpoint
+contributingModels=publication::../../Resources/models/Publication.xmi,\
+				   UML::../../Resources/models/4_Heterogeneous/Library.uml
+matchingModel=../src-gen/borrowBooksAndPublications.ecl

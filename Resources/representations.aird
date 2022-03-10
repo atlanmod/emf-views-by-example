@@ -5,4 +5,5 @@
   <semanticResources>metamodels/Publication.ecore</semanticResources>
   <semanticResources>models/margherita.xmi</semanticResources>
   <semanticResources>models/Recipes.xmi</semanticResources>
+  <semanticResources>models/4_Heterogeneous/Library.uml</semanticResources>
 </viewpoint:DAnalysis>

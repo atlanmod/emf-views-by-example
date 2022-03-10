@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_gbenAKBPEeygFvXg_Vss4A" name="Library">
+  <packagedElement xmi:type="uml:Actor" xmi:id="_4hryAKBPEeygFvXg_Vss4A" name="Reader">
+    <ownedUseCase xmi:id="_Yklt0KBQEeygFvXg_Vss4A" name="Renew Book"/>
+    <ownedUseCase xmi:id="_vuBSEKBREeygFvXg_Vss4A" name="Book Information"/>
+    <ownedUseCase xmi:id="_bVRI4KBUEeygFvXg_Vss4A" name="Borrow Book">
+      <include xmi:id="_fqNv4KBUEeygFvXg_Vss4A" addition="_vuBSEKBREeygFvXg_Vss4A"/>
+    </ownedUseCase>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_C7vWEKBQEeygFvXg_Vss4A" name="Librarian">
+    <ownedUseCase xmi:id="_1sbKMKBREeygFvXg_Vss4A" name="Book information management"/>
+  </packagedElement>
+</uml:Model>

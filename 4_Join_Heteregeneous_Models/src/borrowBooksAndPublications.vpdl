@@ -1,0 +1,15 @@
+create view borrowBooksAndPublications as
+
+select publication.Publication.title,
+       publication.Publication.year,
+       UML.UseCase.*,
+       publication.Publication join UML.UseCase as borrowedPublication,
+       
+
+from 'http://publication' as publication,
+     'http://www.eclipse.org/uml2/5.0.0/UML' as UML
+
+where s.year > 1980
+      and t.eContainer().name = "Borrow Book"
+      for borrowedPublication
+      
