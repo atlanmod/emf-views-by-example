@@ -2,7 +2,7 @@ create view borrowBooksAndPublications as
 
 select publication.Publication.title,
        publication.Publication.year,
-       UML.UseCase.*,
+       UML.Component.*,
        publication.Publication join UML.Model as borrowedPublication,
        
 
