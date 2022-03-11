@@ -1,0 +1,5 @@
+viewpoint=../src/chain.eviewpoint
+contributingModels=uml::../../Resources/models/UML/components.uml,\
+                   java::../../Resources/models/4_Heterogeneous/PetStore_java.xmi,\
+                   trace::../../Resources/models/Logs/log.xmi
+matchingModel=../src/chain.ecl

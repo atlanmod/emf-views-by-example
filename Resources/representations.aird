@@ -6,4 +6,7 @@
   <semanticResources>models/margherita.xmi</semanticResources>
   <semanticResources>models/Recipes.xmi</semanticResources>
   <semanticResources>models/4_Heterogeneous/Library.uml</semanticResources>
+  <semanticResources>metamodels/5_Ecore/trace.ecore</semanticResources>
+  <semanticResources>models/UML/components.uml</semanticResources>
+  <semanticResources>models/Logs/log.xmi</semanticResources>
 </viewpoint:DAnalysis>
