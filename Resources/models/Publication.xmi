@@ -1,9 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Publication:Publication
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:Publication="http://publication"
-    title="The Hitchhiker's Guide to the Galaxy"
-    author="Douglas Adams"
-    publisher="Pan books"
-    year="1979"/>
+<Publication:Publication xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Publication="http://publication" title="The Hitchhiker's Guide to the Galaxy" author="Douglas Adams" publisher="Pan books james" year="1979"/>

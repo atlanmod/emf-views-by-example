@@ -4,7 +4,7 @@
   <virtualLinks xsi:type="virtualLinks:VirtualAssociation" name="traces" source="//@contributingModels.2/@concreteElements.1" target="//@contributingModels.0/@concreteElements.0" upperBound="-1" opposite="//@virtualLinks.0"/>
   <virtualLinks xsi:type="virtualLinks:VirtualAssociation" name="component" source="//@contributingModels.2/@concreteElements.0" target="//@contributingModels.1/@concreteElements.0" upperBound="1" opposite="//@virtualLinks.3"/>
   <virtualLinks xsi:type="virtualLinks:VirtualAssociation" name="javaPackages" source="//@contributingModels.1/@concreteElements.0" target="//@contributingModels.2/@concreteElements.0" upperBound="-1" opposite="//@virtualLinks.2"/>
-  <virtualLinks xsi:type="virtualLinks:VirtualAssociation" name="components" source="//@contributingModels.0/@concreteElements.0" target="//@contributingModels.2/@concreteElements.0" upperBound="-1" opposite="//@virtualLinks.4"/>
+  <virtualLinks xsi:type="virtualLinks:VirtualAssociation" name="components" source="//@contributingModels.1/@concreteElements.0" target="//@contributingModels.2/@concreteElements.0" upperBound="-1"/>
   <contributingModels URI="http://trace">
     <concreteElements xsi:type="virtualLinks:ConcreteConcept" path="Log"/>
   </contributingModels>

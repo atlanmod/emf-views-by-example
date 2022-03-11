@@ -1,6 +1,3 @@
-//~~~~~~~~~~~~~~
-// Trace -> Java
-
 rule javaClass
 match l : trace!Log
 with  c : java!ClassDeclaration
@@ -10,9 +7,6 @@ with  c : java!ClassDeclaration
     return l.source.split("\\.")[0] = c.name;
   }
 }
-
-//~~~~~~~~~~~~
-// Java -> UML
 
 rule component
 match p : java!Package
