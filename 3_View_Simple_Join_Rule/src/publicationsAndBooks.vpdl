@@ -3,7 +3,7 @@ create view publicationsAndBooks as
 select publication.Publication.publisher,
        book.Chapter.title,
        book.Book.*,
-       publication.Publication join book.Book as bookPublisher,
+       book.Book join publication.Publication  as bookPublisher,
 
 from 'http://publication' as publication,
      'http://book' as book,
