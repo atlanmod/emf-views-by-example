@@ -1,2 +1,2 @@
 viewpoint=../src-gen/copyPublication.eviewpoint
-contributingModels=publication::../../Resources/models/Publication.xmi
+contributingModels=publication::../../Resources/models/Basic/Publication.xmi

@@ -1,4 +1,4 @@
 contributingMetamodels=uml::http://www.eclipse.org/uml2/5.0.0/UML,\
                        java::http://www.eclipse.org/MoDisco/Java/0.2.incubation/java,\
-                       trace::../../Resources/metamodels/5_Ecore/trace.ecore
+                       trace::../../Resources/metamodels/Programming_Related/trace.ecore
 weavingModel=chain.xmi
