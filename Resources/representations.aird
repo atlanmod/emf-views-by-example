@@ -12,6 +12,7 @@
     <semanticResources>metamodels/Programming_Related/Metrics.ecore</semanticResources>
     <semanticResources>models/Programming_Related/log.xmi</semanticResources>
     <semanticResources>models/Programming_Related/PetStore_java.xmi</semanticResources>
+    <semanticResources>metamodels/library.emf</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_5kuBkKRbEeyiEv3v9wkEmw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_TK2GEKXvEeyKm-MyBSNohA" name="Book class diagram" repPath="#_TKdrkKXvEeyKm-MyBSNohA" changeId="32fa5217-9b02-4c1a-accb-f8726713f393">

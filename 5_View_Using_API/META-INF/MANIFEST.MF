@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: 5_View_Using_API
+Bundle-SymbolicName: 5_View_Using_API
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: 5.View.Using.API
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Bundle: org.atlanmod.emfviews;bundle-version="0.4.0",
+ org.eclipse.emf;bundle-version="2.8.0",
+ org.atlanmod.emfviews.doc;bundle-version="0.4.0",
+ org.atlanmod.emfviews.mel;bundle-version="0.4.0",
+ org.atlanmod.emfviews.mel.ide;bundle-version="0.4.0",
+ org.atlanmod.emfviews.mel.ui;bundle-version="0.4.0",
+ org.atlanmod.emfviews.virtuallinks;bundle-version="0.4.0",
+ org.atlanmod.emfviews.virtuallinksepsilondelegate;bundle-version="0.4.0",
+ org.eclipse.emf.ecore.xmi
