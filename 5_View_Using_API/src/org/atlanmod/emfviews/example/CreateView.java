@@ -25,116 +25,119 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class CreateView {
-  static String here = new File(".").getAbsolutePath();
+  static String here = new File("../Resources").getAbsolutePath();
 
   static URI resourceURI(String relativePath) {
     return URI.createFileURI(here + relativePath);
   }
 
   public static void main(String[] args) {
+    //Create basic resources to deal with EMF reflective API 
     Map<String, Object> map = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
     map.put("xmi", new XMIResourceFactoryImpl());
     map.put("ecore", new EcoreResourceFactoryImpl());
 
+    //Create EMF Resources
     ResourceSet rs = new ResourceSetImpl();
-    EPackage Book = (EPackage) rs.getResource(resourceURI("/../emfviews-tutorial/metamodels/Book.ecore"), true).getContents().get(0);
-    EPackage Publ = (EPackage) rs.getResource(resourceURI("/../emfviews-tutorial/metamodels/Publication.ecore"), true).getContents().get(0);
+    EPackage Book = (EPackage) rs.getResource(resourceURI("/metamodels/Basic/Book.ecore"), true).getContents().get(0);
+    EPackage Publ = (EPackage) rs.getResource(resourceURI("/metamodels/Basic/Publication.ecore"), true).getContents().get(0);
 
     EPackage.Registry.INSTANCE.put(Book.getNsURI(), Book);
     EPackage.Registry.INSTANCE.put(Publ.getNsURI(), Publ);
 
-    Resource book = rs.getResource(resourceURI("/../emfviews-tutorial/models/book.xmi"), true);
-    Resource publ = rs.getResource(resourceURI("/../emfviews-tutorial/models/publication.xmi"), true);
+    Resource book = rs.getResource(resourceURI("/models/Basic/Book.xmi"), true);
+    Resource publ = rs.getResource(resourceURI("/models/Basic/Publication.xmi"), true);
 
     // 1. Build viewpoint weaving model
-    VirtualLinksFactory f = VirtualLinksFactory.eINSTANCE;
-    WeavingModel WM1 = f.createWeavingModel();
-    WM1.setName("publicationsAndBooks");
+    VirtualLinksFactory vLinksFactory = VirtualLinksFactory.eINSTANCE;
+    WeavingModel viewpointWeavingModel = vLinksFactory.createWeavingModel();
+    viewpointWeavingModel.setName("publicationsAndBooks");
 
     ConcreteConcept source;
     {
-      ContributingModel cm = f.createContributingModel();
-      WM1.getContributingModels().add(cm);
+      ContributingModel cm = vLinksFactory.createContributingModel();
+      viewpointWeavingModel.getContributingModels().add(cm);
       cm.setURI("http://publication");
-      ConcreteConcept cc = f.createConcreteConcept();
+      ConcreteConcept cc = vLinksFactory.createConcreteConcept();
       cm.getConcreteElements().add(cc);
       cc.setPath("Publication");
       source = cc;
     }
 
     ConcreteConcept target;
+    
     ConcreteElement nbPages;
     {
-      ContributingModel cm = f.createContributingModel();
-      WM1.getContributingModels().add(cm);
-      cm.setURI("http://book");
-      ConcreteConcept cc = f.createConcreteConcept();
-      cm.getConcreteElements().add(cc);
-      cc.setPath("Chapter");
-      target = cc;
-      ConcreteElement ce = f.createConcreteElement();
-      cm.getConcreteElements().add(ce);
-      ce.setPath("Chapter.nbPages");
-      nbPages = ce;
+      ContributingModel contributingModel = vLinksFactory.createContributingModel();
+      viewpointWeavingModel.getContributingModels().add(contributingModel);
+      contributingModel.setURI("http://book");
+      ConcreteConcept cConcept = vLinksFactory.createConcreteConcept();
+      contributingModel.getConcreteElements().add(cConcept);
+      cConcept.setPath("Chapter");
+      target = cConcept;
+      ConcreteElement cElement = vLinksFactory.createConcreteElement();
+      contributingModel.getConcreteElements().add(cElement);
+      cElement.setPath("Chapter.nbPages");
+      nbPages = cElement;
     }
 
     {
-      VirtualAssociation va = f.createVirtualAssociation();
-      WM1.getVirtualLinks().add(va);
-      va.setName("bookChapters");
-      va.setUpperBound(-1);
-      va.setSource(source);
-      va.setTarget(target);
+      VirtualAssociation vAssociation = vLinksFactory.createVirtualAssociation();
+      viewpointWeavingModel.getVirtualLinks().add(vAssociation);
+      vAssociation.setName("bookChapters");
+      vAssociation.setUpperBound(-1);
+      vAssociation.setSource(source);
+      vAssociation.setTarget(target);
     }
 
     {
-      Filter fi = f.createFilter();
-      WM1.getVirtualLinks().add(fi);
+      Filter fi = vLinksFactory.createFilter();
+      viewpointWeavingModel.getVirtualLinks().add(fi);
       fi.setName("nbPages");
       fi.setTarget(nbPages);
     }
 
     // 2. Build viewpoint
     Map<String, EPackage> contributingModels = Map.ofEntries(
-            Map.entry("booo", Book),
+            Map.entry("book", Book),
             Map.entry("publ", Publ)
             );
-    Viewpoint viewpoint = new Viewpoint(contributingModels, WM1);
+    Viewpoint viewpoint = new Viewpoint(contributingModels, viewpointWeavingModel);
 
     // 3. Build view weaving model
-    WeavingModel WM2 = f.createWeavingModel();
-    WM2.setName("publicationsAndBooks");
+    WeavingModel viewWeavingModel = vLinksFactory.createWeavingModel();
+    viewWeavingModel.setName("publicationsAndBooks");
 
     {
-      ContributingModel cm = f.createContributingModel();
-      WM2.getContributingModels().add(cm);
+      ContributingModel cm = vLinksFactory.createContributingModel();
+      viewWeavingModel.getContributingModels().add(cm);
       cm.setURI("http://publication");
-      ConcreteConcept cc = f.createConcreteConcept();
+      ConcreteConcept cc = vLinksFactory.createConcreteConcept();
       cm.getConcreteElements().add(cc);
       cc.setPath(publ.getURIFragment(publ.getContents().get(0)));
       source = cc;
     }
 
     {
-      ContributingModel cm = f.createContributingModel();
-      WM2.getContributingModels().add(cm);
+      ContributingModel cm = vLinksFactory.createContributingModel();
+      viewWeavingModel.getContributingModels().add(cm);
       cm.setURI("http://book");
-      ConcreteConcept cc = f.createConcreteConcept();
+      ConcreteConcept cc = vLinksFactory.createConcreteConcept();
       cm.getConcreteElements().add(cc);
       cc.setPath(book.getURIFragment(book.getContents().get(0).eContents().get(0)));
       target = cc;
     }
 
     {
-      VirtualAssociation va = f.createVirtualAssociation();
-      WM2.getVirtualLinks().add(va);
+      VirtualAssociation va = vLinksFactory.createVirtualAssociation();
+      viewWeavingModel.getVirtualLinks().add(va);
       va.setName("bookChapters");
       va.setSource(source);
       va.setTarget(target);
     }
 
     // 4. Build view
-    View view = new View(viewpoint, Arrays.asList(book, publ), WM2);
+    View view = new View(viewpoint, Arrays.asList(book, publ), viewWeavingModel);
 
     // 5. Navigate the new association in the view
     EObject vpubl = view.getVirtualContents().get(1);
