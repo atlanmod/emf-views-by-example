@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<virtualLinks:WeavingModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:virtualLinks="http://www.atlanmod.org/emfviews/virtuallinks/0.3.0" name="publicationsAndBooks">
+  <virtualLinks xsi:type="virtualLinks:VirtualAssociation" name="bookChapters" source="//@contributingModels.0/@concreteElements.0" target="//@contributingModels.1/@concreteElements.0"/>
+  <contributingModels URI="http://publication">
+    <concreteElements xsi:type="virtualLinks:ConcreteConcept" path="/"/>
+  </contributingModels>
+  <contributingModels URI="http://book">
+    <concreteElements xsi:type="virtualLinks:ConcreteConcept" path="//@chapters.0"/>
+  </contributingModels>
+</virtualLinks:WeavingModel>

@@ -1,7 +1,9 @@
 package org.atlanmod.emfviews.example;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.atlanmod.emfviews.core.View;
@@ -21,6 +23,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
@@ -31,7 +34,7 @@ public class CreateView {
     return URI.createFileURI(here + relativePath);
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     //Create basic resources to deal with EMF reflective API 
     Map<String, Object> map = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
     map.put("xmi", new XMIResourceFactoryImpl());
