@@ -1,8 +1,8 @@
 ## EMF-Views by example
 
-This repository includes many examples of [EMF Views](https://www.atlanmod.org/emfviews/) projects organized by a increasing complexity. After install [Eclipse modeling bundle](https://www.eclipse.org/modeling/) and [Epsilon (<= 1.5)](https://www.eclipse.org/epsilon/download/) and add [EMF Views through the update site](https://www.atlanmod.org/updates/emfviews/snapshot/), the examples should work without problems.
+This repository includes many examples of [EMF Views](https://www.atlanmod.org/emfviews/) projects organized by increasing complexity. After installing [Eclipse modeling bundle](https://www.eclipse.org/modeling/) and [Epsilon (<= 1.5)](https://www.eclipse.org/epsilon/download/), add [EMF Views through the update site](https://www.atlanmod.org/updates/emfviews/snapshot/) and then the examples should work without problems.
 
-Follow the examples and the provided explanations for each of them is not enough to understand all EMF Views functionalities neither the implementation details (For it, the best resource is the EMF Views' [manual](https://www.atlanmod.org/emfviews/manual/)). However, the provided examples are a good way to discover some of the possibilities of the tool and also understand how to integrate it in a standard EMF project.
+Following the examples and the provided explanations for each of them is not enough to understand all EMF Views functionalities nor the implementation details (For it, the best resource is the EMF Views' [manual](https://www.atlanmod.org/emfviews/manual/)). However, the provided examples are a good way to discover some of the possibilities of the tool and also understand how to integrate it into a standard EMF project.
 
 #Examples:
 1. [Basic_View](/1_Basic_View/) - Basic example just to check if it's all working fine. Direct copy of tutorial
