@@ -1,4 +1,4 @@
-## EMF-Views by example
+## EMF Views by example
 
 This repository includes many examples of [EMF Views](https://www.atlanmod.org/emfviews/) projects organized by increasing complexity. After installing [Eclipse modeling bundle](https://www.eclipse.org/modeling/) and [Epsilon (<= 1.5)](https://www.eclipse.org/epsilon/download/), add [EMF Views through the update site](https://www.atlanmod.org/updates/emfviews/snapshot/) and then the examples should work without problems.
 

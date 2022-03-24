@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Book="http://book">
+  <Book:Chapter title="Arthur" nbPages="30"/>
+  <Book:Chapter title="Earth" nbPages="40"/>
+</xmi:XMI>
