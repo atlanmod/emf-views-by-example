@@ -8,10 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.atlanmod.emfviews.core.View;
+import org.atlanmod.emfviews.core.ViewResource;
 import org.atlanmod.emfviews.core.Viewpoint;
+import org.atlanmod.emfviews.core.ViewpointResource;
 import org.atlanmod.emfviews.virtuallinks.ConcreteConcept;
 import org.atlanmod.emfviews.virtuallinks.ConcreteElement;
 import org.atlanmod.emfviews.virtuallinks.ContributingModel;
+import org.atlanmod.emfviews.virtuallinks.VirtualAssociation;
 import org.atlanmod.emfviews.virtuallinks.VirtualLinksFactory;
 import org.atlanmod.emfviews.virtuallinks.VirtualProperty;
 import org.atlanmod.emfviews.virtuallinks.WeavingModel;
@@ -28,6 +31,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 public class VirtualPropertyTotalPages {
 	static String here = new File("../Resources").getAbsolutePath();
+	static String examples = new File("example_results").getAbsolutePath();
 
 	  static URI resourceURI(String relativePath) {
 	    return URI.createFileURI(here + relativePath);
@@ -116,36 +120,51 @@ public class VirtualPropertyTotalPages {
 	    viewWeavingModel.setName("booksCalcPages");
 
 	    {
-	      ContributingModel cm = vLinksFactory.createContributingModel();
-	      viewWeavingModel.getContributingModels().add(cm);
-	      cm.setURI("http://book");
-	      ConcreteConcept cc = vLinksFactory.createConcreteConcept();
-	      cm.getConcreteElements().add(cc);
-	      cc.setPath(book.getURIFragment(book.getContents().get(0)));
-	      /*VirtualProperty viewVProperty = vLinksFactory.createVirtualProperty();
-	      viewWeavingModel.getVirtualLinks().add(viewVProperty);
-	      viewVProperty.setName("pagesTotal");
-	      viewVProperty.setType("int");
-	      viewVProperty.setOptional(false);
-	      viewVProperty.setParent(cc);
-	      pagesTotal = viewVProperty;*/
-	      bookConcept = cc;
+	        ContributingModel cm = vLinksFactory.createContributingModel();
+	        viewWeavingModel.getContributingModels().add(cm);
+	        cm.setURI("http://book");
+	        ConcreteConcept cc = vLinksFactory.createConcreteConcept();
+	        cm.getConcreteElements().add(cc);
+	        cc.setPath(book.getURIFragment(book.getContents().get(0).eContents().get(0)));
+	        bookConcept = cc;
+	    }
+	    
+	    {
+	        VirtualProperty vProperty = vLinksFactory.createVirtualProperty();
+	        viewWeavingModel.getVirtualLinks().add(vProperty);
+			vProperty.setName("pagesTotal");
+			vProperty.setType("int");
+			vProperty.setOptional(false);
+			vProperty.setParent(bookConcept);
 	    }
 
 	    // 4. Build view
 	    View view = new View(viewpoint, Arrays.asList(book), viewWeavingModel);
 	    
-	    List <EObject> vbooks = view.getVirtualContents().get(0).eContents();
+	    //SAVE VIEWPOINT AND VIEW - NOT WORKING
+	    /*ViewpointResource vpr = new ViewpointResource(URI.createFileURI("./my.eviewpoint"));
+	    viewpoint.setResource(vpr);
+	    vpr.save(null);
+
+	    ViewResource vr = new ViewResource(URI.createURI("./myvieq.eview"));
+	    vr.setView(view);
+	    vr.save(null);*/
+	    
 	    Resource univ1 = resSet.createResource(URI.createURI("./myTest1.xmi"));
-	    univ1.getContents().addAll(vbooks);
+	    univ1.getContents().addAll(viewWeavingModel.getContributingModels());
+	    univ1.getContents().addAll(viewWeavingModel.getFilters());
+	    univ1.getContents().addAll(viewWeavingModel.getVirtualLinks());
+	    univ1.getContents().addAll(viewWeavingModel.getVirtualAssociations());
+	    univ1.getContents().addAll(viewWeavingModel.getVirtualProperties());
+	    univ1.getContents().addAll(viewWeavingModel.getVirtualConcepts());
+	    univ1.getContents().addAll(viewWeavingModel.getVirtualElements());
 	    try{	
 	        univ1.save(null);
 	    }
 	    catch (IOException e) {e.printStackTrace();}
-	    
 
-	    // 5. Navigate the new association in the view
-	    /*List <EObject> vbooks = view.getVirtualContents().get(0).eContents();
+	    // 5. Navigate the view to check the concrete properties and also the virtual one
+	    List <EObject> vbooks = view.getVirtualContents().get(0).eContents();
 	    for (Iterator<EObject> iter = vbooks.iterator() ; iter.hasNext();) {
 	    	EObject vBook = iter.next();
 		    EClass vBookModelClass = vBook.eClass();
@@ -163,6 +182,7 @@ public class VirtualPropertyTotalPages {
 		    	}		    	
 		    }
 	    }
+	    
 	    /*EObject vproperty = view.get
 	    /*System.out.println(vbook.eGet(vbook.eClass().getEStructuralFeature("title")));
 	    System.out.println(vbook);*/

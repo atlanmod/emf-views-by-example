@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Book="http://book">
-  <Book:Chapter title="Arthur" nbPages="30"/>
-  <Book:Chapter title="Earth" nbPages="40"/>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:virtualLinks="http://www.atlanmod.org/emfviews/virtuallinks/0.3.0">
+  <virtualLinks:ContributingModel URI="http://book">
+    <concreteElements xsi:type="virtualLinks:ConcreteConcept" path="/"/>
+  </virtualLinks:ContributingModel>
+  <virtualLinks:VirtualProperty name="pagesTotal" parent="/0/@concreteElements.0" type="int"/>
 </xmi:XMI>
