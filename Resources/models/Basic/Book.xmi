@@ -3,7 +3,8 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:Book="http://book"
     title="The Hitchhiker's Guide to the Galaxy"
-    authorName="Douglas Adams">
+    authorName="Douglas Adams"
+    ISBN="1234.1234.1234.1234">
   <chapters
       title="Arthur"
       nbPages="30"/>
