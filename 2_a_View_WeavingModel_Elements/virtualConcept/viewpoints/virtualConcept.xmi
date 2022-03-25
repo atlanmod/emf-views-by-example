@@ -7,8 +7,7 @@
     name="virtualConceptExample">
   <virtualLinks
       xsi:type="virtualLinks:VirtualConcept"
-      name="Person"
-      superConcepts="//@contributingModels.0/@concreteElements.0"/>
+      name="Person"/>
   <virtualLinks
       xsi:type="virtualLinks:VirtualProperty"
       name="Surname"
