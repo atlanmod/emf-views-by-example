@@ -3,7 +3,6 @@
   <viewpoint:DAnalysis uid="_O5rwEJ7iEeynCIeF13tShA" selectedViews="_5kuBkKRbEeyiEv3v9wkEmw _5lDYwKRbEeyiEv3v9wkEmw _5lJfYKRbEeyiEv3v9wkEmw _5lRbMKRbEeyiEv3v9wkEmw" version="14.5.1.202106111100">
     <semanticResources>models/UML/components.uml</semanticResources>
     <semanticResources>metamodels/Basic/Book.ecore</semanticResources>
-    <semanticResources>metamodels/Basic/Pizza.ecore</semanticResources>
     <semanticResources>metamodels/Basic/Publication.ecore</semanticResources>
     <semanticResources>models/Basic/Book.xmi</semanticResources>
     <semanticResources>models/Basic/Publication.xmi</semanticResources>
@@ -14,6 +13,7 @@
     <semanticResources>models/Programming_Related/PetStore_java.xmi</semanticResources>
     <semanticResources>metamodels/library.emf</semanticResources>
     <semanticResources>Reference/VirtualLinks.ecore</semanticResources>
+    <semanticResources>metamodels/Basic/BookPublication.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_5kuBkKRbEeyiEv3v9wkEmw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_TK2GEKXvEeyKm-MyBSNohA" name="Book class diagram" repPath="#_TKdrkKXvEeyKm-MyBSNohA" changeId="32fa5217-9b02-4c1a-accb-f8726713f393">
