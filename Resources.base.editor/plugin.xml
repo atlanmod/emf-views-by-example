@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated BookPublication -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.emfviews.examples.Publication.presentation.PublicationModelWizardID"
+            name="%_UI_PublicationModelWizard_label"
+            class="org.emfviews.examples.Publication.presentation.PublicationModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/PublicationModelFile.gif">
+         <description>%_UI_PublicationModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated BookPublication -->
+      <editor
+            id="org.emfviews.examples.Publication.presentation.PublicationEditorID"
+            name="%_UI_PublicationEditor_label"
+            icon="icons/full/obj16/PublicationModelFile.gif"
+            extensions="publication"
+            class="org.emfviews.examples.Publication.presentation.PublicationEditor"
+            contributorClass="org.emfviews.examples.Publication.presentation.PublicationActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated BookPublication -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.emfviews.examples.Book.presentation.BookModelWizardID"
+            name="%_UI_BookModelWizard_label"
+            class="org.emfviews.examples.Book.presentation.BookModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/BookModelFile.gif">
+         <description>%_UI_BookModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated BookPublication -->
+      <editor
+            id="org.emfviews.examples.Book.presentation.BookEditorID"
+            name="%_UI_BookEditor_label"
+            icon="icons/full/obj16/BookModelFile.gif"
+            extensions="book"
+            class="org.emfviews.examples.Book.presentation.BookEditor"
+            contributorClass="org.emfviews.examples.Book.presentation.BookActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
