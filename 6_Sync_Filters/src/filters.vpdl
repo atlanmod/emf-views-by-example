@@ -1,0 +1,9 @@
+create view filters as
+
+select publication.Publication.title,
+       publication.Publication.author,
+       book.Book.ISBN,
+       book.Chapter.nbPages
+
+from 'http://publication' as publication,
+     'http://book' as book

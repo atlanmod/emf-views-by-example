@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
+//TODO: This example is not working properly. Keep for reference
+
 public class VirtualPropertyTotalPages {
 	static String here = new File("../Resources").getAbsolutePath();
 	static String examples = new File("example_results").getAbsolutePath();
