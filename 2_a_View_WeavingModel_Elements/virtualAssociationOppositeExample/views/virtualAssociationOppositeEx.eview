@@ -1,3 +1,0 @@
-viewpoint=../viewpoints/virtualAssociationOpposite.eviewpoint
-contributingModels=publication::../../../Resources/models/Basic/Publication.xmi,book::../../../Resources/models/Basic/Book.xmi
-matchingModel=associationOpposite.ecl

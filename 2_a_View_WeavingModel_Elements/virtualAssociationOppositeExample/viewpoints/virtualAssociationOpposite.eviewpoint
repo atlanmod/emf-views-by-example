@@ -1,3 +1,0 @@
-contributingMetamodels=publication::../../../Resources/metamodels/Basic/Publication.ecore,\
-                       book::../../../Resources/metamodels/Basic/Book.ecore
-weavingModel=virtualAssociationOpposite.xmi
