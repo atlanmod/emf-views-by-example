@@ -3,7 +3,6 @@ package org.atlanmod.emfviews.example;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.atlanmod.emfviews.core.View;
@@ -15,15 +14,12 @@ import org.atlanmod.emfviews.virtuallinks.Filter;
 import org.atlanmod.emfviews.virtuallinks.VirtualAssociation;
 import org.atlanmod.emfviews.virtuallinks.VirtualLinksFactory;
 import org.atlanmod.emfviews.virtuallinks.WeavingModel;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
@@ -146,8 +142,8 @@ public class CreateView {
     EObject vpubl = view.getVirtualContents().get(1);
     System.out.println(vpubl.eGet(vpubl.eClass().getEStructuralFeature("title")));
 
-    EStructuralFeature assoc = vpubl.eClass().getEStructuralFeature("bookChapters");
-    EObject vchapter = ((EList<EObject>) vpubl.eGet(assoc)).get(0);
-    System.out.println(vchapter.eGet(vchapter.eClass().getEStructuralFeature("title")));
+    //EStructuralFeature assoc = vpubl.eClass().getEStructuralFeature("bookChapters");
+    //EObject vchapter = ((EList<EObject>) vpubl.eGet(assoc)).get(0);
+    //System.out.println(vchapter.eGet(vchapter.eClass().getEStructuralFeature("title")));
   }
 }
