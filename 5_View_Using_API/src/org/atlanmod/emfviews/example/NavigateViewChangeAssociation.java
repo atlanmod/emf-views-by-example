@@ -8,21 +8,22 @@ import java.util.Map;
 
 import org.atlanmod.emfviews.extra.EmfViewsFactory;
 import org.atlanmod.emfviews.virtuallinks.VirtualLinksPackage;
+import org.atlanmod.emfviews.virtuallinks.delegator.VirtualLinksDelegator;
+import org.atlanmod.emfviews.virtuallinksepsilondelegate.EclDelegate;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-public class NavigateViewChangeFilter {
+
+public class NavigateViewChangeAssociation {
 	  static String root = new File("../").getAbsolutePath();	  
 
 	  static URI resourceURI(String relativePath) {
@@ -30,7 +31,7 @@ public class NavigateViewChangeFilter {
 	  }
 	  
 	  /**
-	   * Iterate over the the view to change its filters values and verify what happens with source models
+	   * Iterate over the the view to change its association values and verify what happens with source models
 	   * @param args
 	   * @throws IOException
 	   */
@@ -43,6 +44,7 @@ public class NavigateViewChangeFilter {
 	    
 	    //Register virtualLinks
 	    VirtualLinksPackage.eINSTANCE.eClass();
+	    VirtualLinksDelegator.register("ecl", new EclDelegate());
 	    
 	    // Register metamodels
 	    ResourceSet resSet = new ResourceSetImpl();
@@ -52,24 +54,24 @@ public class NavigateViewChangeFilter {
 	    EPackage.Registry.INSTANCE.put(Publication.getNsURI(), Publication);
 	    
 	    //Load the source model that is used in the view
-	    Resource book = resSet.getResource(resourceURI("/Resources/models/Basic/Book.xmi"), true);
+	    Resource publication = resSet.getResource(resourceURI("/Resources/models/Basic/Publication.xmi"), true);
 
 	    //Create EMF Resources for the view
-	    Resource filteredInfoView  = resSet.getResource(resourceURI("/6_Sync_Filters/views/filteredInfo.eview"), true);
-	    filteredInfoView.load(null);
+	    Resource bookPublisherView  = resSet.getResource(resourceURI("/3_View_Simple_Join_Rule/views/bookPublisher.eview"), true);
+	    bookPublisherView.load(null);
 	    
 	    //print the view to check elements	    
-	    List <EObject> vElements = filteredInfoView.getContents();
+	    List <EObject> vElements = bookPublisherView.getContents();
 	    printView(vElements);
 	    
-	    //Try to adjust the ISBN values in the view
-	    adjustAllISBN(vElements);
+	    //Try to adjust the publisher values in the view
+	    adjustAllPublisher(vElements);
 	    
 	    //print the view again to check the changes	    
 	    printView(vElements);
 	    
-	    //print the book to check if it changes
-	    printBook(book);	    
+	    //print the publication to check if it changes
+	    printPublication(publication);
 	  }
 	  
 	  /**
@@ -98,49 +100,49 @@ public class NavigateViewChangeFilter {
 	  }
 	  
 	  /**
-	   * Navigate through the view to adjust the ISBN of its elements (when exists)
+	   * Navigate through the view to adjust the publisher of its elements (when exists)
 	   * @param List <EObject> vElements
 	   */
-	  public static void adjustAllISBN(List <EObject> vElements) 
+	  public static void adjustAllPublisher(List <EObject> vElements) 
 	  {
 		  for (Iterator<EObject> iter = vElements.iterator() ; iter.hasNext();) {
 		    	EObject vElement = iter.next();
-			    adjustISBN(vElement);
+			    adjustPublisher(vElement);
 		  }
 	  }
 	  
 	  /**
-	   * Receive view object and change the ISBN value when appropriate
+	   * Receive view object and change the Publisher value when appropriate
 	   * @param EObject object
 	   */
-	  public static void adjustISBN(EObject object) 
+	  public static void adjustPublisher(EObject object) 
 	  {
-		  EStructuralFeature feature = object.eClass().getEStructuralFeature("ISBN");
+		  EStructuralFeature feature = object.eClass().getEStructuralFeature("publisher");
 		  if (feature != null) 
 		  {
-			  String isbn = (String) object.eGet(feature).toString();
-			  object.eSet(feature, "ISBN=" + isbn);
+			  String publisher = (String) object.eGet(feature).toString();
+			  object.eSet(feature, publisher + " association");
 		  }
 	  }
 	  
 	  /**
 	   * 
-	   * @param Resource book
+	   * @param Resource publication
 	   */
-	  public static void printBook(Resource book) 
+	  public static void printPublication(Resource publication) 
 	  {
-		  List <EObject> bookElements = book.getContents();
-		  for (Iterator<EObject> iter = bookElements.iterator() ; iter.hasNext();) {
-		    	EObject bookElement = iter.next();
-			    EClass bookModelClass = bookElement.eClass();
-			    System.out.println(bookModelClass.getName());
-			    for (Iterator<EAttribute> iterAttr = bookModelClass.getEAllAttributes().iterator() ; iterAttr.hasNext();) {
-			    	EAttribute bookElementAttribute = (EAttribute) iterAttr.next();
+		  List <EObject> publicationElements = publication.getContents();
+		  for (Iterator<EObject> iter = publicationElements.iterator() ; iter.hasNext();) {
+		    	EObject publicationElement = iter.next();
+			    EClass publicationModelClass = publicationElement.eClass();
+			    System.out.println(publicationModelClass.getName());
+			    for (Iterator<EAttribute> iterAttr = publicationModelClass.getEAllAttributes().iterator() ; iterAttr.hasNext();) {
+			    	EAttribute publicationElementAttribute = (EAttribute) iterAttr.next();
 			    	
-			    	Object elementAttributeValue = bookElement.eGet(bookElementAttribute);
-			    	String attrName = bookElementAttribute.getName();
+			    	Object elementAttributeValue = publicationElement.eGet(publicationElementAttribute);
+			    	String attrName = publicationElementAttribute.getName();
 			    	System.out.println(" " + attrName + ": " + elementAttributeValue);
-			    	if (bookElement.eIsSet(bookElementAttribute)) {
+			    	if (publicationElement.eIsSet(publicationElementAttribute)) {
 			    		System.out.println();
 			    	} else {
 			    		System.out.println(" (default)");
@@ -148,5 +150,4 @@ public class NavigateViewChangeFilter {
 			    }
 		    }
 	  }
-
 }
