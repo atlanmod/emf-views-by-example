@@ -54,7 +54,7 @@ public class NavigateViewChangeFilter {
 
 	    //Create EMF Resources for the view
 	    Resource filteredInfoView  = resSet.getResource(resourceURI("/6_Sync_Filters/views/filteredInfo.eview"), true);
-	    filteredInfoView.load(null);
+	    filteredInfoView.load(null);//serialize the weaving model after modification
 	    
 	    //print the view to check elements	    
 	    List <EObject> vElements = filteredInfoView.getContents();
@@ -67,7 +67,7 @@ public class NavigateViewChangeFilter {
 	    printView(vElements);
 	    
 	    //print the book to check if it changes
-	    printBook(book);	    
+	    printBook(book);//serialize it	    
 	  }
 	  
 	  /**

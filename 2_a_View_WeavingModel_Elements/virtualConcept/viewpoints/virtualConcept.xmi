@@ -7,7 +7,7 @@
     name="virtualConceptExample">
   <virtualLinks
       xsi:type="virtualLinks:VirtualConcept"
-      name="Person"/>
+      name="Author"/>
   <virtualLinks
       xsi:type="virtualLinks:VirtualProperty"
       name="Surname"

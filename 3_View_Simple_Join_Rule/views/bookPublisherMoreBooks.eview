@@ -1,0 +1,3 @@
+viewpoint=../src-gen/publicationsAndBooks.eviewpoint
+contributingModels=publication::../../Resources/models/Basic/Publication.xmi,book::../../Resources/models/Basic/instances/Run_Rose_Run.book
+matchingModel=../src-gen/publicationsAndBooks.ecl
