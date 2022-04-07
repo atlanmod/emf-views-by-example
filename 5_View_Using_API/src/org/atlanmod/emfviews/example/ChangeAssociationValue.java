@@ -23,8 +23,9 @@ import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 
-public class NavigateViewChangeAssociation {
-	  static String root = new File("../").getAbsolutePath();	  
+public class ChangeAssociationValue {
+	  static String root = new File("../").getAbsolutePath();
+	  static String serializedFolder = new File("serialized_examples/").getAbsolutePath();	
 
 	  static URI resourceURI(String relativePath) {
 	    return URI.createFileURI(root + relativePath);
