@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="ASCII"?>
 <Book:Book xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Book="http://book" title="The Hitchhiker's Guide to the Galaxy" authorName="Douglas Adams" ISBN="1234.1234.1234.1234">
   <chapters title="Arthur" nbPages="30"/>
   <chapters title="Earth" nbPages="40"/>

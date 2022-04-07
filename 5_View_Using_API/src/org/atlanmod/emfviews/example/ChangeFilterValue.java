@@ -6,11 +6,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.atlanmod.emfviews.core.ViewResource;
 import org.atlanmod.emfviews.extra.EmfViewsFactory;
+import org.atlanmod.emfviews.helper.ModelHelper;
+import org.atlanmod.emfviews.helper.ViewHelper;
 import org.atlanmod.emfviews.virtuallinks.VirtualLinksPackage;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -20,15 +21,16 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.EcoreResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-public class NavigateViewChangeFilter {
+public class ChangeFilterValue {
 	  static String root = new File("../").getAbsolutePath();	  
+	  static String serializedFolder = new File("serialized_examples/").getAbsolutePath();	  
 
 	  static URI resourceURI(String relativePath) {
 	    return URI.createFileURI(root + relativePath);
 	  }
 	  
 	  /**
-	   * Iterate over the the view to change its filters values and verify what happens with source models
+	   * Iterate over the the view to change its filters values and verify what happens with source models (check if it is synchronized somehow)
 	   * @param args
 	   * @throws IOException
 	   */
@@ -58,43 +60,27 @@ public class NavigateViewChangeFilter {
 	    
 	    //print the view to check elements	    
 	    List <EObject> vElements = filteredInfoView.getContents();
-	    printView(vElements);
+	    ViewHelper.printView(vElements);
 	    
 	    //Try to adjust the ISBN values in the view
 	    adjustAllISBN(vElements);
 	    
 	    //print the view again to check the changes	    
-	    printView(vElements);
+	    ViewHelper.printView(vElements);
 	    
 	    //print the book to check if it changes
-	    printBook(book);//serialize it	    
+	    printBook(book);
+	    
+	    //serialize the book model after changes into a new file to verify if anything changes
+	    ModelHelper.serializeResource(book, URI.createFileURI(serializedFolder + "/change_filter_book.xmi"));
+	    
+	    //Serialize the weaving model to verify if anything changes after modification of the Filter's value
+	    ViewResource viewToSerialize = (ViewResource) filteredInfoView;
+	    System.out.println(viewToSerialize.getURI());
+	    /*URI weavingModelURI = URI.createURI(weavingModelPath).resolve(getURI());
+	    Resource weavingModelResource = new ResourceSetImpl().getResource(weavingModelURI, true);*/
 	  }
-	  
-	  /**
-	   * Navigate through the view to print out attributes
-	   * @param List <EObject> vElements
-	   */
-	  public static void printView(List <EObject> vElements) 
-	  {
-		  for (Iterator<EObject> iter = vElements.iterator() ; iter.hasNext();) {
-		    	EObject vElement = iter.next();
-			    EClass vElementModelClass = vElement.eClass();
-			    System.out.println(vElementModelClass.getName());
-			    for (Iterator<EAttribute> iterAttr = vElementModelClass.getEAllAttributes().iterator() ; iterAttr.hasNext();) {
-			    	EAttribute vElementAttribute = (EAttribute) iterAttr.next();
-			    	
-			    	Object elementAttributeValue = vElement.eGet(vElementAttribute);
-			    	String attrName = vElementAttribute.getName();
-			    	System.out.println(" " + attrName + ": " + elementAttributeValue);
-			    	if (vElement.eIsSet(vElementAttribute)) {
-			    		System.out.println();
-			    	} else {
-			    		System.out.println(" (default)");
-			    	}
-			    }
-		    }
-	  }
-	  
+	  	  
 	  /**
 	   * Navigate through the view to adjust the ISBN of its elements (when exists)
 	   * @param List <EObject> vElements
@@ -127,24 +113,7 @@ public class NavigateViewChangeFilter {
 	   */
 	  public static void printBook(Resource book) 
 	  {
-		  List <EObject> bookElements = book.getContents();
-		  for (Iterator<EObject> iter = bookElements.iterator() ; iter.hasNext();) {
-		    	EObject bookElement = iter.next();
-			    EClass bookModelClass = bookElement.eClass();
-			    System.out.println(bookModelClass.getName());
-			    for (Iterator<EAttribute> iterAttr = bookModelClass.getEAllAttributes().iterator() ; iterAttr.hasNext();) {
-			    	EAttribute bookElementAttribute = (EAttribute) iterAttr.next();
-			    	
-			    	Object elementAttributeValue = bookElement.eGet(bookElementAttribute);
-			    	String attrName = bookElementAttribute.getName();
-			    	System.out.println(" " + attrName + ": " + elementAttributeValue);
-			    	if (bookElement.eIsSet(bookElementAttribute)) {
-			    		System.out.println();
-			    	} else {
-			    		System.out.println(" (default)");
-			    	}
-			    }
-		    }
+		  ModelHelper.printResource(book);
 	  }
 
 }

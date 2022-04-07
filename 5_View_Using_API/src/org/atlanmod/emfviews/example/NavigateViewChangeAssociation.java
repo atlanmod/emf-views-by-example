@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.atlanmod.emfviews.extra.EmfViewsFactory;
+import org.atlanmod.emfviews.helper.ModelHelper;
+import org.atlanmod.emfviews.helper.ViewHelper;
 import org.atlanmod.emfviews.virtuallinks.VirtualLinksPackage;
 import org.atlanmod.emfviews.virtuallinks.delegator.VirtualLinksDelegator;
 import org.atlanmod.emfviews.virtuallinksepsilondelegate.EclDelegate;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -62,43 +62,18 @@ public class NavigateViewChangeAssociation {
 	    
 	    //print the view to check elements	    
 	    List <EObject> vElements = bookPublisherView.getContents();
-	    printView(vElements);
+	    ViewHelper.printView(vElements);
 	    
 	    //Try to adjust the publisher values in the view
 	    adjustAllPublisher(vElements);
 	    
 	    //print the view again to check the changes	    
-	    printView(vElements);
+	    ViewHelper.printView(vElements);
 	    
 	    //print the publication to check if it changes
 	    printPublication(publication);
 	  }
-	  
-	  /**
-	   * Navigate through the view to print out attributes
-	   * @param List <EObject> vElements
-	   */
-	  public static void printView(List <EObject> vElements) 
-	  {
-		  for (Iterator<EObject> iter = vElements.iterator() ; iter.hasNext();) {
-		    	EObject vElement = iter.next();
-			    EClass vElementModelClass = vElement.eClass();
-			    System.out.println(vElementModelClass.getName());
-			    for (Iterator<EAttribute> iterAttr = vElementModelClass.getEAllAttributes().iterator() ; iterAttr.hasNext();) {
-			    	EAttribute vElementAttribute = (EAttribute) iterAttr.next();
-			    	
-			    	Object elementAttributeValue = vElement.eGet(vElementAttribute);
-			    	String attrName = vElementAttribute.getName();
-			    	System.out.println(" " + attrName + ": " + elementAttributeValue);
-			    	if (vElement.eIsSet(vElementAttribute)) {
-			    		System.out.println();
-			    	} else {
-			    		System.out.println(" (default)");
-			    	}
-			    }
-		    }
-	  }
-	  
+	   
 	  /**
 	   * Navigate through the view to adjust the publisher of its elements (when exists)
 	   * @param List <EObject> vElements
@@ -131,23 +106,6 @@ public class NavigateViewChangeAssociation {
 	   */
 	  public static void printPublication(Resource publication) 
 	  {
-		  List <EObject> publicationElements = publication.getContents();
-		  for (Iterator<EObject> iter = publicationElements.iterator() ; iter.hasNext();) {
-		    	EObject publicationElement = iter.next();
-			    EClass publicationModelClass = publicationElement.eClass();
-			    System.out.println(publicationModelClass.getName());
-			    for (Iterator<EAttribute> iterAttr = publicationModelClass.getEAllAttributes().iterator() ; iterAttr.hasNext();) {
-			    	EAttribute publicationElementAttribute = (EAttribute) iterAttr.next();
-			    	
-			    	Object elementAttributeValue = publicationElement.eGet(publicationElementAttribute);
-			    	String attrName = publicationElementAttribute.getName();
-			    	System.out.println(" " + attrName + ": " + elementAttributeValue);
-			    	if (publicationElement.eIsSet(publicationElementAttribute)) {
-			    		System.out.println();
-			    	} else {
-			    		System.out.println(" (default)");
-			    	}
-			    }
-		    }
+		  ModelHelper.printResource(publication);
 	  }
 }
