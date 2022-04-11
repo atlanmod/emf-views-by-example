@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -88,7 +89,7 @@ public class ChangeFilterValue {
 	  public static void adjustAllISBN(List <EObject> vElements) 
 	  {
 		  for (Iterator<EObject> iter = vElements.iterator() ; iter.hasNext();) {
-		    	EObject vElement = iter.next();
+			  DynamicEObjectImpl vElement = (DynamicEObjectImpl) iter.next();
 			    adjustISBN(vElement);
 		  }
 	  }
@@ -97,12 +98,13 @@ public class ChangeFilterValue {
 	   * Receive view object and change the ISBN value when appropriate
 	   * @param EObject object
 	   */
-	  public static void adjustISBN(EObject object) 
+	  public static void adjustISBN(DynamicEObjectImpl object) 
 	  {
 		  EStructuralFeature feature = object.eClass().getEStructuralFeature("ISBN");
 		  if (feature != null) 
 		  {
 			  String isbn = (String) object.eGet(feature).toString();
+
 			  object.eSet(feature, "ISBN=" + isbn);
 		  }
 	  }
