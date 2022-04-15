@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.atlanmod.emfviews.core.ViewResource;
 import org.atlanmod.emfviews.extra.EmfViewsFactory;
 import org.atlanmod.emfviews.helper.ModelHelper;
 import org.atlanmod.emfviews.helper.ViewHelper;
@@ -76,8 +75,7 @@ public class ChangeFilterValue {
 	    ModelHelper.serializeResource(book, URI.createFileURI(serializedFolder + "/change_filter_book.xmi"));
 	    
 	    //Serialize the weaving model to verify if anything changes after modification of the Filter's value
-	    //HOW?
-	    
+	    //HOW?	    
 
 	  }
 	  	  
