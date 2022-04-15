@@ -72,14 +72,13 @@ public class ChangeFilterValue {
 	    //print the book to check if it changes
 	    printBook(book);
 	    
-	    //serialize the book model after changes into a new file to verify if anything changes
+	    //serialize the book model after changes into a new file to verify if something changes
 	    ModelHelper.serializeResource(book, URI.createFileURI(serializedFolder + "/change_filter_book.xmi"));
 	    
 	    //Serialize the weaving model to verify if anything changes after modification of the Filter's value
-	    ViewResource viewToSerialize = (ViewResource) filteredInfoView;
-	    System.out.println(viewToSerialize.getURI());
-	    /*URI weavingModelURI = URI.createURI(weavingModelPath).resolve(getURI());
-	    Resource weavingModelResource = new ResourceSetImpl().getResource(weavingModelURI, true);*/
+	    //HOW?
+	    
+
 	  }
 	  	  
 	  /**
