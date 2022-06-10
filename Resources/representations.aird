@@ -14,9 +14,16 @@
     <semanticResources>metamodels/library.emf</semanticResources>
     <semanticResources>Reference/VirtualLinks.ecore</semanticResources>
     <semanticResources>metamodels/Basic/BookPublication.genmodel</semanticResources>
+    <semanticResources>profiles/Property.profile.uml</semanticResources>
+    <semanticResources>pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>pathmap://UML_PROFILES/Ecore.profile.uml</semanticResources>
+    <semanticResources>pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml</semanticResources>
+    <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
+    <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
+    <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_5kuBkKRbEeyiEv3v9wkEmw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_TK2GEKXvEeyKm-MyBSNohA" name="Book class diagram" repPath="#_TKdrkKXvEeyKm-MyBSNohA" changeId="32fa5217-9b02-4c1a-accb-f8726713f393">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_TK2GEKXvEeyKm-MyBSNohA" name="Book class diagram" repPath="#_TKdrkKXvEeyKm-MyBSNohA" changeId="5f5e8863-6b8d-46cd-a6f3-0442d302e3bd">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="metamodels/Basic/Book.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -64,6 +71,10 @@
             <children xmi:type="notation:Node" xmi:id="_T_5ewKXvEeyKm-MyBSNohA" type="3010" element="_T_rcUaXvEeyKm-MyBSNohA">
               <styles xmi:type="notation:FontStyle" xmi:id="_T_5ewaXvEeyKm-MyBSNohA" fontName="Segoe UI" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_T_5ewqXvEeyKm-MyBSNohA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_R8IVUOiMEey4YPGfKsEelg" type="3010" element="_R7yXEeiMEey4YPGfKsEelg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_R8IVUeiMEey4YPGfKsEelg" fontName="Segoe UI" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_R8IVUuiMEey4YPGfKsEelg"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_T_4QoaXvEeyKm-MyBSNohA"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_T_4QoqXvEeyKm-MyBSNohA"/>
@@ -139,6 +150,14 @@
         <target xmi:type="ecore:EAttribute" href="metamodels/Basic/Book.ecore#//Book/authorName"/>
         <semanticElements xmi:type="ecore:EAttribute" href="metamodels/Basic/Book.ecore#//Book/authorName"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_T_sDYKXvEeyKm-MyBSNohA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_R7yXEeiMEey4YPGfKsEelg" name="ISBN : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="metamodels/Basic/Book.ecore#//Book/ISBN"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="metamodels/Basic/Book.ecore#//Book/ISBN"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_R7zlMOiMEey4YPGfKsEelg" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>

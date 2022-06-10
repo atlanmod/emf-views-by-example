@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_t-fh8OiOEey2EeUYwHT3Cw" name="property">
+  <eAnnotations xmi:id="_RN2O0eiTEey2EeUYwHT3Cw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_RN2O0uiTEey2EeUYwHT3Cw" name="property" nsURI="http:///schemas/property/_RN2O0OiTEey2EeUYwHT3Cw/0" nsPrefix="property">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_RN2O0-iTEey2EeUYwHT3Cw" name="EStructuralFeature">
+        <eAnnotations xmi:id="_RN2O1OiTEey2EeUYwHT3Cw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ZRZyYOiPEey2EeUYwHT3Cw"/>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RN2O1eiTEey2EeUYwHT3Cw" name="isAvailable" ordered="false" defaultValueLiteral="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/uml2/5.0.0/Types#//Boolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_RN2O1-iTEey2EeUYwHT3Cw" name="xmlMediaType" ordered="false" eType="_RN2O2eiTEey2EeUYwHT3Cw"/>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EEnum" xmi:id="_RN2O2eiTEey2EeUYwHT3Cw" name="MediaKind">
+        <eAnnotations xmi:id="_RN2O2uiTEey2EeUYwHT3Cw" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_HNyb8OiPEey2EeUYwHT3Cw"/>
+        <eLiterals xmi:id="_RN2O2-iTEey2EeUYwHT3Cw" name="EBook"/>
+        <eLiterals xmi:id="_RN2O3OiTEey2EeUYwHT3Cw" name="AudioBook" value="1"/>
+        <eLiterals xmi:id="_RN2O3eiTEey2EeUYwHT3Cw" name="PhysicalBook" value="2"/>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_CioUYOiPEey2EeUYwHT3Cw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_CipigOiPEey2EeUYwHT3Cw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <elementImport xmi:id="_CiqJkOiPEey2EeUYwHT3Cw">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_ZRZyYOiPEey2EeUYwHT3Cw" name="EStructuralFeature">
+    <ownedAttribute xmi:id="_M3pyAOiQEey2EeUYwHT3Cw" name="isAvailable">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hKbHoOiQEey2EeUYwHT3Cw"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_mMzcYOiQEey2EeUYwHT3Cw" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_sHstgOiQEey2EeUYwHT3Cw" name="xmlMediaType" type="_HNyb8OiPEey2EeUYwHT3Cw">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-wwTUOiQEey2EeUYwHT3Cw"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Enumeration" xmi:id="_HNyb8OiPEey2EeUYwHT3Cw" name="MediaKind">
+    <ownedLiteral xmi:id="_QaO9YOiPEey2EeUYwHT3Cw" name="EBook"/>
+    <ownedLiteral xmi:id="_TURFkOiPEey2EeUYwHT3Cw" name="AudioBook"/>
+    <ownedLiteral xmi:id="_Vr9VsOiPEey2EeUYwHT3Cw" name="PhysicalBook"/>
+  </packagedElement>
+</uml:Profile>
