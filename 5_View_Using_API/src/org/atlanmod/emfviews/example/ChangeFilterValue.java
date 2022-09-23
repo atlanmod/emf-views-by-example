@@ -9,6 +9,7 @@ import java.util.Map;
 import org.atlanmod.emfviews.extra.EmfViewsFactory;
 import org.atlanmod.emfviews.helper.ModelHelper;
 import org.atlanmod.emfviews.helper.ViewHelper;
+import org.atlanmod.emfviews.helper.ViewModifier;
 import org.atlanmod.emfviews.virtuallinks.VirtualLinksPackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -56,10 +57,23 @@ public class ChangeFilterValue {
 
 	    //Create EMF Resources for the view
 	    Resource filteredInfoView  = resSet.getResource(resourceURI("/6_Sync_Filters/views/filteredInfo.eview"), true);
-	    filteredInfoView.load(null);//serialize the weaving model after modification
+	    filteredInfoView.load(null);
+	    
+	    List <EObject> vElements = filteredInfoView.getContents();
+	    ViewHelper.printView(vElements);
+	    
+	    
+	    /*ViewModifier modifier = new ViewModifier(filteredInfoView);
+	    modifier.changeFilter("Author", "John");*/
+	    
+	    
+	    /**
+	     * The code below is wrong and does not change the view
+	     * Just keep for reference for a while
+	     */
 	    
 	    //print the view to check elements	    
-	    List <EObject> vElements = filteredInfoView.getContents();
+	    /*List <EObject> vElements = filteredInfoView.getContents();
 	    ViewHelper.printView(vElements);
 	    
 	    //Try to adjust the ISBN values in the view
@@ -76,35 +90,35 @@ public class ChangeFilterValue {
 	    
 	    //Serialize the weaving model to verify if anything changes after modification of the Filter's value
 	    //HOW?	    
-
+	     */
 	  }
 	  	  
 	  /**
 	   * Navigate through the view to adjust the ISBN of its elements (when exists)
 	   * @param List <EObject> vElements
 	   */
-	  public static void adjustAllISBN(List <EObject> vElements) 
+	  /*public static void adjustAllISBN(List <EObject> vElements) 
 	  {
 		  for (Iterator<EObject> iter = vElements.iterator() ; iter.hasNext();) {
 			  DynamicEObjectImpl vElement = (DynamicEObjectImpl) iter.next();
-			    adjustISBN(vElement);
+			  adjustISBN(vElement);
 		  }
-	  }
+	  }*/
 	  
 	  /**
 	   * Receive view object and change the ISBN value when appropriate
 	   * @param EObject object
 	   */
-	  public static void adjustISBN(DynamicEObjectImpl object) 
+	  /*public static void adjustISBN(DynamicEObjectImpl object) 
 	  {
 		  EStructuralFeature feature = object.eClass().getEStructuralFeature("ISBN");
 		  if (feature != null) 
 		  {
 			  String isbn = (String) object.eGet(feature).toString();
 
-			  object.eSet(feature, "ISBN=" + isbn);
+			  object.eSet(feature, "Changes=" + isbn);
 		  }
-	  }
+	  }*/
 	  
 	  /**
 	   * 

@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<virtualLinks:WeavingModel
-    xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:virtualLinks="http://www.atlanmod.org/emfviews/virtuallinks/0.3.0"
-    name="filterExample"
-    whitelist="true">
-  <virtualLinks
-      xsi:type="virtualLinks:Filter"
-      name="AuthorName"
-      target="//@contributingModels.0/@concreteElements.0"/>
-  <contributingModels
-      URI="http://publication">
-    <concreteElements
-        path="Publication.author"/>
+<virtualLinks:WeavingModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:virtualLinks="http://www.atlanmod.org/emfviews/virtuallinks/0.3.0" name="filterExample" whitelist="true">
+  <virtualLinks xsi:type="virtualLinks:Filter" name="AuthorName" target="//@contributingModels.0/@concreteElements.0"/>
+  <contributingModels URI="http://publication">
+    <concreteElements path="Publication.author"/>
   </contributingModels>
 </virtualLinks:WeavingModel>
