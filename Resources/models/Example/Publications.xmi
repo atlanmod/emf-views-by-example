@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Publications:Publications
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:Publications="http://publications">
+  <publications
+      title="BookA"
+      author="AuthorA"
+      publisher="PanBooks"
+      year="1998"
+      Code="1234"/>
+  <publications
+      title="BookB"
+      author="AuthorB"
+      publisher="BanBooks"
+      year="2002"
+      Code="23456"/>
+  <publications
+      title="MyBook"
+      author="AuthorC"
+      publisher="BanBooks"
+      year="2022"
+      Code="7890"/>
+  <publications
+      title="BookA"
+      author="AuthorZ"
+      publisher="NewPublisherHouse"
+      year="2018"
+      Code="456"/>
+</Publications:Publications>

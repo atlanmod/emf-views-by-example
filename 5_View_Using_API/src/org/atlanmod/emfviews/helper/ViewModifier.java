@@ -64,14 +64,14 @@ public class ViewModifier {
 	 }*/
 		 View updatedView = (View) view;
 		 //get the view filters to be updated
-		 for (Filter filter : view.getWeavingModel().getFilters()) {
+		 /*for (Filter filter : view.getWeavingModel().getFilters()) {
 		      ConcreteElement target = filter.getTarget();
 		      EObject targetObj = modelResources.get(target.getModel().getURI()).getEObject(target.getPath());
 		      if (targetObj != null) {
 		        VirtualEObject v = getVirtual(targetObj);
 		        v.setHidden(true);
 		      }
-		}
+		}*/
 	  }
 	 
 	 /**

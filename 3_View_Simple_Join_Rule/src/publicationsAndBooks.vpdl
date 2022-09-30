@@ -3,9 +3,9 @@ create view publicationsAndBooks as
 select publication.Publication.publisher,
        book.Book.*,
        book.Chapter.*,
-       book.Book join publication.Publication  as bookPublisher,
+       book.Book join publication.Publication  as bookPublication,
 
 from 'http://publication' as publication,
      'http://book' as book,
 
-where s.title = t.title for bookPublisher
+where s.title = t.title for bookPublication

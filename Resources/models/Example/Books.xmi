@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Books:Books
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:Books="http://books">
+  <books title="BookB"
+      authorName="AuthorB"
+      ISBN="23456"
+      year="1998">
+    <chapters
+        title="Chapter1"
+        nbPages="100"/>
+    <chapters
+        title="Chapter2"
+        nbPages="200"/>
+  </books>
+  <books title="BookA"
+      authorName="AuthorA"
+      ISBN="1234"
+      year="1999">
+    <chapters
+        title="Unique"
+        nbPages="430"/>
+  </books>
+</Books:Books>

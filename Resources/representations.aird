@@ -21,6 +21,10 @@
     <semanticResources>pathmap://UML_PROFILES/Standard.profile.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/UML.metamodel.uml</semanticResources>
     <semanticResources>pathmap://UML_METAMODELS/Ecore.metamodel.uml</semanticResources>
+    <semanticResources>metamodels/Example/Books.ecore</semanticResources>
+    <semanticResources>metamodels/Example/Publications.ecore</semanticResources>
+    <semanticResources>models/Example/Books.xmi</semanticResources>
+    <semanticResources>models/Example/Publications.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_5kuBkKRbEeyiEv3v9wkEmw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
       <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_TK2GEKXvEeyKm-MyBSNohA" name="Book class diagram" repPath="#_TKdrkKXvEeyKm-MyBSNohA" changeId="5f5e8863-6b8d-46cd-a6f3-0442d302e3bd">

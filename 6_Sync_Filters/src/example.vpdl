@@ -1,0 +1,12 @@
+create view publicationsAndBooks as
+
+select publications.Publication.publisher,
+       books.Books.*,
+       books.Book.*,
+       books.Chapter.title,
+       books.Book join publications.Publication  as bookPublication,
+
+from 'http://publications' as publications,
+     'http://books' as books,
+
+where s.title = t.title for bookPublication
