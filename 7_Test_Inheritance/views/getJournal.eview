@@ -1,0 +1,3 @@
+viewpoint=../src-gen/getJournal.eviewpoint
+contributingModels=publications::../../Resources/models/Example/Publications.xmi,books::../../Resources/models/Example/Books.xmi
+matchingModel=../src-gen/getJournal.ecl

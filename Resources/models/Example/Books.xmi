@@ -22,4 +22,8 @@
         title="Unique"
         nbPages="430"/>
   </books>
+  <books title="NiceName"
+      authorName="Blka"
+      ISBN="1234"
+      year="2002"/>
 </Books:Books>

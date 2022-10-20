@@ -2,13 +2,15 @@
 <Publications:Publications
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:Publications="http://publications">
   <publications
       title="BookA"
       author="AuthorA"
       publisher="PanBooks"
       year="1998"
-      Code="1234"/>
+      Code="1234"
+      desc="DescOfBookA"/>
   <publications
       title="BookB"
       author="AuthorB"
@@ -27,4 +29,13 @@
       publisher="NewPublisherHouse"
       year="2018"
       Code="456"/>
+  <publications
+      xsi:type="Publications:Journal"
+      title="NiceName"
+      author="AutA"
+      publisher="CoolPublisher"
+      year="2023"
+      Code="42"
+      lastChange="2022-08-09T00:00:00.000+0200"
+      desc="DescOfJournal"/>
 </Publications:Publications>

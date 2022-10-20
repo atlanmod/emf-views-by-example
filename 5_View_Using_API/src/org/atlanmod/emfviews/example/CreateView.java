@@ -38,14 +38,14 @@ public class CreateView {
 
     //Create EMF Resources
     ResourceSet rs = new ResourceSetImpl();
-    EPackage Book = (EPackage) rs.getResource(resourceURI("/metamodels/Basic/Book.ecore"), true).getContents().get(0);
-    EPackage Publ = (EPackage) rs.getResource(resourceURI("/metamodels/Basic/Publication.ecore"), true).getContents().get(0);
+    EPackage Books = (EPackage) rs.getResource(resourceURI("/metamodels/Example/Books.ecore"), true).getContents().get(0);
+    EPackage Publs = (EPackage) rs.getResource(resourceURI("/metamodels/Example/Publications.ecore"), true).getContents().get(0);
 
-    EPackage.Registry.INSTANCE.put(Book.getNsURI(), Book);
-    EPackage.Registry.INSTANCE.put(Publ.getNsURI(), Publ);
+    EPackage.Registry.INSTANCE.put(Books.getNsURI(), Books);
+    EPackage.Registry.INSTANCE.put(Publs.getNsURI(), Publs);
 
-    Resource book = rs.getResource(resourceURI("/models/Basic/Book.xmi"), true);
-    Resource publ = rs.getResource(resourceURI("/models/Basic/Publication.xmi"), true);
+    Resource books = rs.getResource(resourceURI("/models/Example/Books.xmi"), true);
+    Resource publs = rs.getResource(resourceURI("/models/Example/Publications.xmi"), true);
 
     // 1. Build viewpoint weaving model
     VirtualLinksFactory vLinksFactory = VirtualLinksFactory.eINSTANCE;
@@ -56,10 +56,10 @@ public class CreateView {
     {
       ContributingModel cm = vLinksFactory.createContributingModel();
       viewpointWeavingModel.getContributingModels().add(cm);
-      cm.setURI("http://publication");
+      cm.setURI("http://publications");
       ConcreteConcept cc = vLinksFactory.createConcreteConcept();
       cm.getConcreteElements().add(cc);
-      cc.setPath("Publication");
+      cc.setPath("Publications");
       source = cc;
     }
 
@@ -69,7 +69,7 @@ public class CreateView {
     {
       ContributingModel contributingModel = vLinksFactory.createContributingModel();
       viewpointWeavingModel.getContributingModels().add(contributingModel);
-      contributingModel.setURI("http://book");
+      contributingModel.setURI("http://books");
       ConcreteConcept cConcept = vLinksFactory.createConcreteConcept();
       contributingModel.getConcreteElements().add(cConcept);
       cConcept.setPath("Chapter");
@@ -98,8 +98,8 @@ public class CreateView {
 
     // 2. Build viewpoint
     Map<String, EPackage> contributingModels = Map.ofEntries(
-            Map.entry("book", Book),
-            Map.entry("publ", Publ)
+            Map.entry("books", Books),
+            Map.entry("publs", Publs)
             );
     Viewpoint viewpoint = new Viewpoint(contributingModels, viewpointWeavingModel);
 
@@ -110,20 +110,20 @@ public class CreateView {
     {
       ContributingModel cm = vLinksFactory.createContributingModel();
       viewWeavingModel.getContributingModels().add(cm);
-      cm.setURI("http://publication");
+      cm.setURI("http://publications");
       ConcreteConcept cc = vLinksFactory.createConcreteConcept();
       cm.getConcreteElements().add(cc);
-      cc.setPath(publ.getURIFragment(publ.getContents().get(0)));
+      cc.setPath(publs.getURIFragment(publs.getContents().get(0)));
       source = cc;
     }
 
     {
       ContributingModel cm = vLinksFactory.createContributingModel();
       viewWeavingModel.getContributingModels().add(cm);
-      cm.setURI("http://book");
+      cm.setURI("http://books");
       ConcreteConcept cc = vLinksFactory.createConcreteConcept();
       cm.getConcreteElements().add(cc);
-      cc.setPath(book.getURIFragment(book.getContents().get(0).eContents().get(0)));
+      cc.setPath(books.getURIFragment(books.getContents().get(0).eContents().get(0)));
       target = cc;
     }
 
@@ -136,7 +136,7 @@ public class CreateView {
     }
 
     // 4. Build view
-    View view = new View(viewpoint, Arrays.asList(book, publ), viewWeavingModel);
+    View view = new View(viewpoint, Arrays.asList(books, publs), viewWeavingModel);
 
     // 5. Navigate the new association in the view
     EObject vpubl = view.getVirtualContents().get(1);
