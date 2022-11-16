@@ -5,18 +5,23 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="publications" upperBound="-1"
         eType="#//Publication" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Publication">
+  <eClassifiers xsi:type="ecore:EClass" name="Publication" instanceClassName="org.eclipse.publications.Publication">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="author" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="publisher" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="year" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Code" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastChange" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="desc" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData" references="http://www.eclipse.org/emf/2002/Ecore#//EString/%http:%2F%2F%2Forg%2Feclipse%2Femf%2Fecore%2Futil%2FExtendedMetaData%">
-        <details key="name" value="DESC"/>
-      </eAnnotations>
-    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="desc" ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Journal" eSuperTypes="#//Publication"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Journal" instanceClassName="org.eclipse.publications.Journal"
+      eSuperTypes="#//Publication">
+    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+      <details key="name" value="SPEC-JOURNAL"/>
+      <details key="kind" value="elementOnly"/>
+    </eAnnotations>
+    <eAnnotations source="http:///org/eclipse/sphinx/emf/serialization/XMLPersistenceMappingExtendedMetaData">
+      <details key="wrapperName" value="SPEC-JOURNAL"/>
+    </eAnnotations>
+  </eClassifiers>
 </ecore:EPackage>
