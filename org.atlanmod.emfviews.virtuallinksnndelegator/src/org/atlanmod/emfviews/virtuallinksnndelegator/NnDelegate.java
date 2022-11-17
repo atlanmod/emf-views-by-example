@@ -10,10 +10,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 //EMF related imports
 import org.atlanmod.emfviews.virtuallinks.delegator.IVirtualLinksDelegate;
@@ -32,6 +35,12 @@ import com.google.gson.Gson;
 
 public class NnDelegate implements IVirtualLinksDelegate {
 
+	private Map<String, Lambda> compiledRules;
+
+	static interface Lambda {
+		Object exec(Object... args) throws Exception;
+	}
+
 	@Override
 	public void init(URI linksDslURI, Map<String, Resource> inputModels) {
 
@@ -44,7 +53,7 @@ public class NnDelegate implements IVirtualLinksDelegate {
 
 		System.out.println(linksDslURI);
 		System.out.println(inputModels);
-		List<Map<String, String>> ruleList = new ArrayList<Map<String, String>>();
+		Map<String, String> ruleList = new HashMap<String, String>();
 
 		if (linksDslURI.isPlatform()) {
 			// Find the system path for the file from the workspace URI
@@ -62,12 +71,10 @@ public class NnDelegate implements IVirtualLinksDelegate {
 			BufferedReader br = new BufferedReader(fr);
 
 			String line;
-			
+
 			while ((line = br.readLine()) != null) {
 				String[] ruleNameAndParameters = line.split(":=", 2);
-				Map<String, String> rule = new HashMap<String, String>();
-				rule.put(ruleNameAndParameters[0], ruleNameAndParameters[1]);
-				ruleList.add(rule);
+				ruleList.put(ruleNameAndParameters[0], ruleNameAndParameters[1]);
 			}
 			fr.close();
 		} catch (Exception ex) {
@@ -85,7 +92,7 @@ public class NnDelegate implements IVirtualLinksDelegate {
 			connection.setRequestProperty("Content-Type", "application/json");
 			connection.setRequestProperty("Accept", "application/json");
 
-			ArrayList<Map<String, List<String>>> modelsList = new ArrayList<Map<String, List<String>>>();
+			Map<String, List<String>> modelsList = new HashMap<String, List<String>>();
 
 			// Get the models' info
 			for (Entry<String, Resource> e : inputModels.entrySet()) {
@@ -103,13 +110,12 @@ public class NnDelegate implements IVirtualLinksDelegate {
 					}
 					modelTitles.add(title);
 				}
-				Map<String, List<String>> inputModelJson = new HashMap<>();
-				inputModelJson.put(name, modelTitles);
-				modelsList.add(inputModelJson);
+
+				modelsList.put(name, modelTitles);
 			}
 
 			@SuppressWarnings("rawtypes")
-			Map<String, List> finalPayload = new HashMap<String, List>();
+			Map<String, Map> finalPayload = new HashMap<String, Map>();
 			finalPayload.put("rules", ruleList);
 			finalPayload.put("models", modelsList);
 			String payload = gson.toJson(finalPayload);
@@ -129,7 +135,8 @@ public class NnDelegate implements IVirtualLinksDelegate {
 				in.close();
 
 				// print result
-				System.out.println(response.toString());
+				String responseStr = response.toString();
+				System.out.println(responseStr);
 			} else {
 				System.out.println("POST request is not working");
 			}
@@ -138,11 +145,20 @@ public class NnDelegate implements IVirtualLinksDelegate {
 			System.out.println(e);
 			System.out.println("Failed sending information to the server");
 		}
+
+		
+		compiledRules = new HashMap<>();
+		ruleList.forEach((ruleName, ruleParams) -> {
+		
+			Lambda func = (o) -> o.getClass();
+			compiledRules.put(ruleName, func);
+		
+		});
 	}
-	
+
 	@Override
-	public List<EObject> executeMatchRule(String ruleName, EObject param, boolean rightHand) throws Exception{
-		return null;
+	public List<EObject> executeMatchRule(String ruleName, EObject param, boolean rightHand) throws Exception {
+		return Collections.emptyList();
 	}
 
 }
