@@ -1,56 +1,51 @@
 package org.atlanmod.emfviews.virtuallinksnndelegator;
 
+//Main Java imports
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
+//EMF related imports
 import org.atlanmod.emfviews.virtuallinks.delegator.IVirtualLinksDelegate;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.m2m.atl.core.ATLCoreException;
-import org.eclipse.m2m.atl.engine.compiler.Atl2004Compiler;
 
-
+//Import to deal with JSON
+import com.google.gson.Gson;
 
 public class NnDelegate implements IVirtualLinksDelegate {
 
-	private Atl2004Compiler atlCompiler;
-	private Map<String, Lambda> compiledRules;
-
-	static interface Lambda {
-		Object exec(Object... args) throws ATLCoreException;
-	}
-
-	@Override
-	public List<EObject> executeMatchRule(String arg0, EObject arg1, boolean arg2) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public void init(URI linksDslURI, Map<String, Resource> inputModels) {
-		
-		//For the Match rules file
+
+		// For the Match rules file
 		File file;
-		
-		//For the API
+
+		// For the API
 		URL url;
 		HttpURLConnection connection;
-		
+
 		System.out.println(linksDslURI);
 		System.out.println(inputModels);
-		
+		List<Map<String, String>> ruleList = new ArrayList<Map<String, String>>();
+
 		if (linksDslURI.isPlatform()) {
 			// Find the system path for the file from the workspace URI
 			IContainer wsroot = EcorePlugin.getWorkspaceRoot();
@@ -59,23 +54,71 @@ public class NnDelegate implements IVirtualLinksDelegate {
 		} else {
 			file = new File(linksDslURI.toFileString());
 		}
-		
-		try{
-	        url = new URL(" http://172.26.72.178:8080/process");
-	        connection = (HttpURLConnection) url.openConnection();
-	        
-	        connection.setRequestMethod("POST");
-	        connection.setDoOutput(true);
-	        connection.setRequestProperty("Content-Type","application/json");
-	        connection.setRequestProperty("Accept", "application/json");
-	        
-	        String payload = "{\"num1\" : [1, 2, 3], \"num2\":[4, 5, 6]}";
-	        byte[] out = payload.getBytes(StandardCharsets.UTF_8);
-	        OutputStream stream = connection.getOutputStream();
-	        stream.write(out);
-	        System.out.println(connection.getResponseCode() + " " + connection.getResponseMessage());
-	        if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) { 
-	        	
+
+		// parse the file to get the rules and parameters
+		try {
+
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+
+			String line;
+			
+			while ((line = br.readLine()) != null) {
+				String[] ruleNameAndParameters = line.split(":=", 2);
+				Map<String, String> rule = new HashMap<String, String>();
+				rule.put(ruleNameAndParameters[0], ruleNameAndParameters[1]);
+				ruleList.add(rule);
+			}
+			fr.close();
+		} catch (Exception ex) {
+			throw new RuntimeException("Error in parsing the NN file", ex);
+		}
+
+		Gson gson = new Gson();
+
+		try {
+			url = new URL("http://172.26.65.219:8080/process");
+			connection = (HttpURLConnection) url.openConnection();
+
+			connection.setRequestMethod("POST");
+			connection.setDoOutput(true);
+			connection.setRequestProperty("Content-Type", "application/json");
+			connection.setRequestProperty("Accept", "application/json");
+
+			ArrayList<Map<String, List<String>>> modelsList = new ArrayList<Map<String, List<String>>>();
+
+			// Get the models' info
+			for (Entry<String, Resource> e : inputModels.entrySet()) {
+				String name = e.getKey();
+				EList<EObject> modelElements = e.getValue().getContents();
+				List<String> modelTitles = new ArrayList<String>();
+				for (EObject obj : modelElements) {
+					String title;
+					EStructuralFeature feature = ((EObject) obj).eClass().getEStructuralFeature("title");
+					if (feature != null) {
+						EObject titleElement = (EObject) obj.eGet(feature);
+						title = obj.eClass().getName() + "_" + titleElement.eClass().getName();
+					} else {
+						title = obj.eClass().getName();
+					}
+					modelTitles.add(title);
+				}
+				Map<String, List<String>> inputModelJson = new HashMap<>();
+				inputModelJson.put(name, modelTitles);
+				modelsList.add(inputModelJson);
+			}
+
+			@SuppressWarnings("rawtypes")
+			Map<String, List> finalPayload = new HashMap<String, List>();
+			finalPayload.put("rules", ruleList);
+			finalPayload.put("models", modelsList);
+			String payload = gson.toJson(finalPayload);
+			byte[] out = payload.getBytes(StandardCharsets.UTF_8);
+			OutputStream stream = connection.getOutputStream();
+			stream.write(out);
+			System.out.println(connection.getResponseCode() + " " + connection.getResponseMessage());
+			if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+
 				BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 				String inputLine;
 				StringBuffer response = new StringBuffer();
@@ -88,59 +131,18 @@ public class NnDelegate implements IVirtualLinksDelegate {
 				// print result
 				System.out.println(response.toString());
 			} else {
-				System.out.println("POST request not worked");
+				System.out.println("POST request is not working");
 			}
-	        connection.disconnect();
-	    }catch (Exception e){
-	        System.out.println(e);
-	        System.out.println("Failed successfully");
-	    }
-       
-		
-        
-        
-        
-		/*InputStream fileStream;
-		File file;
-
-		if (linksDslURI.isPlatform()) {
-			// Find the system path for the file from the workspace URI
-			IContainer wsroot = EcorePlugin.getWorkspaceRoot();
-			IFile ifile = wsroot.getFile(new Path(linksDslURI.toPlatformString(true)));
-			file = new File(ifile.getLocationURI());
-		} else {
-			file = new File(linksDslURI.toFileString());
+			connection.disconnect();
+		} catch (Exception e) {
+			System.out.println(e);
+			System.out.println("Failed sending information to the server");
 		}
-		
-		try {
-			fileStream = new FileInputStream(file);
-		} catch (FileNotFoundException e1) {
-			throw new RuntimeException("Error in parsing ATL file", e1);
-		}
-
-		// Use ATL compiler to get the result of the file compilation
-		atlCompiler = new Atl2004Compiler();
-		try {
-			CompileTimeError[] errors = atlCompiler.compile(fileStream, "");
-			if (errors.length > 0) {
-				System.err.println("Parse errors occured...");
-				for (CompileTimeError problem : errors) {
-					System.err.println(problem.toString());
-				}
-				throw new RuntimeException("Error in parsing ATL file.  See stderr for details");
-			}
-			OutputStream atlCompiled = Atl2004Compiler.getCompilationOutputStream();
-		} catch (Exception ex) {
-			throw new RuntimeException("Error in parsing ATL file", ex);
-		}
-
-		// Add input models and grab the metamodel URI
-		for (Entry<String, Resource> e : inputModels.entrySet()) {
-			String name = e.getKey();
-			Resource modelResource = e.getValue();
-//			EmfModel inputModel = new InMemoryEmfModel(name, modelResource);
-//			atlCompiler.getContext().getModelRepository().addModel(inputModel);
-		}*/
+	}
+	
+	@Override
+	public List<EObject> executeMatchRule(String ruleName, EObject param, boolean rightHand) throws Exception{
+		return null;
 	}
 
 }
