@@ -32,14 +32,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 
 //Import to deal with JSON
 import com.google.gson.Gson;
+import com.google.gson.JsonPrimitive;
 
 public class NnDelegate implements IVirtualLinksDelegate {
 
-	private Map<String, Lambda> compiledRules;
-
-	static interface Lambda {
-		Object exec(Object... args) throws Exception;
-	}
+	private Map<String, Boolean> compiledRules;
 
 	@Override
 	public void init(URI linksDslURI, Map<String, Resource> inputModels) {
@@ -54,6 +51,7 @@ public class NnDelegate implements IVirtualLinksDelegate {
 		System.out.println(linksDslURI);
 		System.out.println(inputModels);
 		Map<String, String> ruleList = new HashMap<String, String>();
+		compiledRules = new HashMap<>();
 
 		if (linksDslURI.isPlatform()) {
 			// Find the system path for the file from the workspace URI
@@ -75,6 +73,7 @@ public class NnDelegate implements IVirtualLinksDelegate {
 			while ((line = br.readLine()) != null) {
 				String[] ruleNameAndParameters = line.split(":=", 2);
 				ruleList.put(ruleNameAndParameters[0], ruleNameAndParameters[1]);
+				compiledRules.put(ruleNameAndParameters[0], false);
 			}
 			fr.close();
 		} catch (Exception ex) {
@@ -84,7 +83,7 @@ public class NnDelegate implements IVirtualLinksDelegate {
 		Gson gson = new Gson();
 
 		try {
-			url = new URL("http://172.26.65.219:8080/process");
+			url = new URL("http://172.26.76.72:8080/process");
 			connection = (HttpURLConnection) url.openConnection();
 
 			connection.setRequestMethod("POST");
@@ -134,9 +133,16 @@ public class NnDelegate implements IVirtualLinksDelegate {
 				}
 				in.close();
 
-				// print result
-				String responseStr = response.toString();
+				// print result and save a JSON object for navigation
+				String responseStr = response.toString().replaceAll("\\s","");
+				JsonPrimitive responseJson = new Gson().fromJson(responseStr, JsonPrimitive.class);
 				System.out.println(responseStr);
+				
+				final Boolean data = responseJson.getAsBoolean();
+				System.out.println("rules : " + data);
+								
+				compiledRules.put("bookPublication", data);
+				
 			} else {
 				System.out.println("POST request is not working");
 			}
@@ -145,20 +151,14 @@ public class NnDelegate implements IVirtualLinksDelegate {
 			System.out.println(e);
 			System.out.println("Failed sending information to the server");
 		}
-
-		
-		compiledRules = new HashMap<>();
-		ruleList.forEach((ruleName, ruleParams) -> {
-		
-			Lambda func = (o) -> o.getClass();
-			compiledRules.put(ruleName, func);
-		
-		});
 	}
 
 	@Override
 	public List<EObject> executeMatchRule(String ruleName, EObject param, boolean rightHand) throws Exception {
-		return Collections.emptyList();
+		if (!compiledRules.isEmpty()) {
+			return Collections.emptyList();
+		}
+		return null;
 	}
 
 }
