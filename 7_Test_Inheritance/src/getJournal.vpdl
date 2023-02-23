@@ -1,13 +1,8 @@
 create view getJournal as
 
 select publications.Journal.desc,
-       publications.Publications.*,
-       books.Books.*,
-       books.Book.*,
-       books.Chapter.title,
-       books.Book join publications.Journal  as bookPublication,
+       publications.Publications.jounals,
 
 from 'http://publications' as publications,
-     'http://books' as books,
 
-where s.title = t.title for bookPublication
+//where s.title = t.title for bookPublication

@@ -1,12 +1,27 @@
 create view publicationsAndBooks as
 
-select publications.Publication.publisher,
-       books.Books.*,
-       books.Book.*,
-       books.Chapter.title,
-       books.Book join publications.Publication  as bookPublication,
+select pub.Publication.publisher,
+       pub.Books.*,
+       pub.Book.*,
+       pub.Chapter.name,
+       pub.Book join pub.Publication  as same_title,
+       pub.Book join pub.Publication  as same_author,
+       pub.Book join pub.Publication  as same_nbPages,
+       pub.Book join pub.Publication  as same_title_lower,
+       pub.Book join pub.Publication  as more_nbPages,
+       pub.Book join pub.Publication  as year_before,
 
-from 'http://publications' as publications,
-     'http://books' as books,
+from 'http://booksAndPublications' as pub,
 
-where s.title = t.title for bookPublication
+where s.title = t.title for same_title,
+      s.title.toLowerCase() = t.title.toLowerCase() for same_title_lower,
+      s.year <= t.year for year_before,
+      
+      s.authorName = t.author.name for same_author,
+      
+      s.nbPages = t.chapters.collect().nbPages.sum() for same_nbPages,
+      s.nbPages >= t.chapters.collect().nbPages.sum() for more_nbPages,
+      
+      
+      
+		

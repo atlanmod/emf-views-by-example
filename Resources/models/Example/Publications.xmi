@@ -38,4 +38,12 @@
       Code="42"
       lastChange="2022-08-09T00:00:00.000+0200"
       desc="DescOfJournal"/>
+  <journals
+      xsi:type="Publications:Journal"
+      title="MyTestTitle"
+      author="MyAuthor"
+      publisher="MyTestPublisher"
+      year="2021"
+      Code="1234"
+      desc="MyTestDesc"/>
 </Publications:Publications>

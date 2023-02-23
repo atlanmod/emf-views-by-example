@@ -4,6 +4,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Publications">
     <eStructuralFeatures xsi:type="ecore:EReference" name="publications" upperBound="-1"
         eType="#//Publication" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="journals" upperBound="-1"
+        eType="#//Journal"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Publication" instanceClassName="org.eclipse.publications.Publication">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="title" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
