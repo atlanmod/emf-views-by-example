@@ -1,7 +1,7 @@
 create view getJournal as
 
 select publications.Journal.desc,
-       publications.Publications.jounals,
+       publications.Publications.journals,
 
 from 'http://publications' as publications,
 
