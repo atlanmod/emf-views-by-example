@@ -18,12 +18,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Journal" instanceClassName="org.eclipse.publications.Journal"
       eSuperTypes="#//Publication">
-    <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
-      <details key="name" value="SPEC-JOURNAL"/>
-      <details key="kind" value="elementOnly"/>
-    </eAnnotations>
-    <eAnnotations source="http:///org/eclipse/sphinx/emf/serialization/XMLPersistenceMappingExtendedMetaData">
-      <details key="wrapperName" value="SPEC-JOURNAL"/>
-    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="testing" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EChar"/>
   </eClassifiers>
 </ecore:EPackage>

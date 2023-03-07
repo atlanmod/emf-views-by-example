@@ -4,5 +4,3 @@ select publications.Journal.desc,
        publications.Publications.journals,
 
 from 'http://publications' as publications,
-
-//where s.title = t.title for bookPublication
