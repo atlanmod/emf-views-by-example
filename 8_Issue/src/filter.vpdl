@@ -1,0 +1,6 @@
+create view example_filter as
+
+select inherited.B[allCs, attr1],
+       inherited.C.description,
+
+from 'http://inherited' as inherited,

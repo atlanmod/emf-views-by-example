@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Inherited:B
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:Inherited="http://inherited"
+    description="BDescription"
+    attr1="1234"
+    attr2="true">
+  <allCs description="C1Desc"
+      attrC1="1"/>
+  <allCs description="C2Desc"
+      attrC1="2"/>
+</Inherited:B>
