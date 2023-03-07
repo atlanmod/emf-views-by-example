@@ -13,7 +13,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Publication.ecore#//Publication/author"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Publication.ecore#//Publication/publisher"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Publication.ecore#//Publication/year"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Publication.ecore#//Publication/Code"/>
     </genClasses>
   </genPackages>
   <genPackages prefix="Book" basePackage="org.emfviews.examples" disposableProviderFactory="true"
@@ -22,7 +21,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Book.ecore#//Book/title"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Book.ecore#//Book/authorName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Book.ecore#//Book/chapters"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Book.ecore#//Book/ISBN"/>
     </genClasses>
     <genClasses ecoreClass="Book.ecore#//Chapter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Book.ecore#//Chapter/title"/>
